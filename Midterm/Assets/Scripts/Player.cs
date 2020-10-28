@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     {
         move();
         jump();
+
     }
 
     void OnTriggerEnter2D(Collider2D collision){
@@ -37,13 +38,23 @@ public class Player : MonoBehaviour
         if(collision.tag == "Obstacle"){
             rb.velocity = new Vector2(0,0);
             transform.position = new Vector2(0,0);
+        }
 
+        if(collision.tag == "Fly"){
+            Score.IncreaseScore();
+            Destroy(collision.gameObject);
+        }
+        
+        if(collision.tag == "Enemy"){
+            transform.position = new Vector2(0,0);
         }
 
     }
 
-    void OnCollisionExit2D(){
-        _grounded = false;
+    void OnTriggerExit2D(Collider2D collision){
+        if(collision.tag == "Ground"){
+            _grounded = false;
+        }
     }
 
 // current bug happens when the player is holding down the oppositie direction, and that direction is abo

@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score
+public class Score : MonoBehaviour
 {
-    private int _score = 0;
+    public static int _score = 0;
+
+    public static void IncreaseScore(){
+        _score +=1;
+
+    }
+
 }

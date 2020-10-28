@@ -16,7 +16,6 @@ public class EndOfLevel : MonoBehaviour
         
     }
     void OnTriggerEnter2D(Collider2D collider) {
-
         SceneManager.LoadScene(nextLevel.name, LoadSceneMode.Single);
         collider.transform.position = new Vector2(0,0);
     }
