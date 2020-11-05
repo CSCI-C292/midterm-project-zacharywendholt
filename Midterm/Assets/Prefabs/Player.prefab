@@ -128,7 +128,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 64.82
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1016528, y: -0.3885967}
+  m_Offset: {x: -0.09107977, y: -0.3885967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -174,7 +174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3437606, y: 0.114720225}
+  m_Size: {x: 0.40015012, y: 0.114720225}
   m_EdgeRadius: 0
 --- !u!1 &932272072696108467
 GameObject:

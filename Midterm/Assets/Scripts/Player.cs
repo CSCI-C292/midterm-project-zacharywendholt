@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
 
     void Start(){
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         // if there is another camera in the scene delete it
         // this ensures that the player camera is the only active camera in the scene
@@ -59,13 +59,14 @@ public class Player : MonoBehaviour
 
 // current bug happens when the player is holding down the oppositie direction, and that direction is abo
     void move(){
-        if(Input.GetAxis("Horizontal") != 0)
+        if(Input.GetAxisRaw("Horizontal") != 0)
         {
             if(Math.Abs(rb.velocity.x) < _maxMoveSpeed){
                 float targetHorizontalMovement = Input.GetAxis("Horizontal") * _maxMoveSpeed;
                 Vector2 velocityChange = new Vector2(targetHorizontalMovement-rb.velocity.x * Time.deltaTime, 0);
                 rb.AddForce(velocityChange);
         }
+
 
         }
         //player is moving in a negative direction
