@@ -7,26 +7,28 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] GameObject _knifeHitbox;
+    [SerializeField] GameObject _obstaclePrefab;
     private bool _grounded = false;
     [SerializeField] private float _jumpSpeed = 40;
     [SerializeField] private int _maxMoveSpeed = 10;
     private Vector2 _speedReduction = new Vector2(.5f, 0);
 
+    private Vector3 grappleLocation;
+
 
     // Update is called once per frame
 
     void Start(){
-        //DontDestroyOnLoad(gameObject);
 
-        // if there is another camera in the scene delete it
-        // this ensures that the player camera is the only active camera in the scene
-
-
+        Physics2D.IgnoreLayerCollision(9,9,true);
     }
     void Update()
     {
         move();
         jump();
+        attack();
+        grapple();
 
     }
 
@@ -45,9 +47,6 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
         
-        if(collision.tag == "Enemy"){
-            transform.position = new Vector2(0,0);
-        }
 
     }
 
@@ -88,6 +87,34 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0, 0);
             rb.AddForce(movement, ForceMode2D.Impulse);
 
+        }
+    }
+
+    void attack(){
+        if(Input.GetMouseButton(0)){
+            _knifeHitbox.SetActive(true);
+        }
+        else{
+            _knifeHitbox.SetActive(false);
+        }
+    }
+
+    void grapple(){
+
+        
+
+        if(Input.GetMouseButtonDown(1)){
+            grappleLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+             
+             
+        }
+        else if(Input.GetMouseButtonUp(1)){
+            grappleLocation = transform.position;
+        }
+
+        else if(Input.GetMouseButton(1)){
+            Vector3 grappleForce = grappleLocation - transform.position;
+            rb.AddForce(new Vector2(grappleForce.x, grappleForce.y * 4));
         }
     }
 

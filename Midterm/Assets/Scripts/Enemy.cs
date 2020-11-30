@@ -27,4 +27,21 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.0f);
         StartCoroutine("ChangeDirection");
     }
+
+        void OnTriggerEnter2D(Collider2D collision){
+            if(collision.name == "KnifeHitbox"){
+
+                Destroy(gameObject);            
+            }
+
+            else if(collision.name == "Player"){
+                collision.transform.position = new Vector2(0,0);
+                Rigidbody2D playerRigidbody = collision.GetComponent<Rigidbody2D>();
+                Vector2 antiVelocity = new Vector2(-playerRigidbody.velocity.x, -playerRigidbody.velocity.y);
+                playerRigidbody.AddForce(antiVelocity,ForceMode2D.Impulse);
+            }
+
+
+
+    }
 }

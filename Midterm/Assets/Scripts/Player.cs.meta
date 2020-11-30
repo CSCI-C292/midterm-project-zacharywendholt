@@ -3,7 +3,11 @@ guid: 87b79891e40a78c498a9843a10eed67e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - _knifeHitbox: {instanceID: 0}
+  - _obstaclePrefab: {instanceID: 0}
+  - _grappleLocation: {fileID: 5761273187728468353, guid: 05f4d199f45e28d41a1a19610093a9ea, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
