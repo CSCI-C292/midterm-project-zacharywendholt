@@ -15,11 +15,13 @@ public class Player : MonoBehaviour
     private Vector2 _speedReduction = new Vector2(.5f, 0);
 
     private Vector3 grappleLocation;
+    private LineRenderer lineRenderer;
 
 
     // Update is called once per frame
 
     void Start(){
+        initializeLineRenderer();
 
         Physics2D.IgnoreLayerCollision(9,9,true);
     }
@@ -105,8 +107,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1)){
             grappleLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-             
-             
+            lineRenderer.SetPosition(0, grappleLocation);
         }
         else if(Input.GetMouseButtonUp(1)){
             grappleLocation = transform.position;
@@ -114,8 +115,24 @@ public class Player : MonoBehaviour
 
         else if(Input.GetMouseButton(1)){
             Vector3 grappleForce = grappleLocation - transform.position;
-            rb.AddForce(new Vector2(grappleForce.x, grappleForce.y * 4));
+            rb.AddForce(new Vector2(grappleForce.x, grappleForce.y * 3));
+            lineRenderer.SetPosition(1, transform.position);
         }
+        else{
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position);
+        }
+    }
+    void initializeLineRenderer(){
+        lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+        //lineRenderer.startColor = Color.black;
+        //lineRenderer.endColor = Color.black;
+        lineRenderer.startWidth = .1f;
+        lineRenderer.endWidth = .1f;
+        lineRenderer.positionCount = 2;
+        lineRenderer.useWorldSpace = true;
+        Material whiteDiffuseMat = new Material(Shader.Find("Unlit/Texture"));
+        lineRenderer.material = whiteDiffuseMat;
     }
 
 }
