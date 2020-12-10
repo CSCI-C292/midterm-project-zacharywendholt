@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
         jump();
         attack();
         grapple();
-
+        heightCheck();
     }
 
     void OnTriggerEnter2D(Collider2D collision){
@@ -133,6 +134,12 @@ public class Player : MonoBehaviour
         lineRenderer.useWorldSpace = true;
         Material whiteDiffuseMat = new Material(Shader.Find("Unlit/Texture"));
         lineRenderer.material = whiteDiffuseMat;
+    }
+
+    void heightCheck(){
+        if(transform.position.y < -20){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
     }
 
 }
